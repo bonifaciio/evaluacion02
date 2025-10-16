@@ -122,7 +122,7 @@ git --version
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/rafaelchuco/evaluacion02.git
+git clone https://github.com/bonifaciochuco/evaluacion02.git
 
 # Entrar al directorio
 cd evaluacion02
@@ -456,8 +456,8 @@ Si quieres mejorar el sistema:
 
 ## 📞 Contacto y Soporte
 
-- 🐛 [Reportar un problema](https://github.com/rafaelchuco/evaluacion02/issues)
-- 💬 [Hacer una pregunta](https://github.com/rafaelchuco/evaluacion02/discussions)
+- 🐛 [Reportar un problema](https://github.com/bonifaciochuco/evaluacion02/issues)
+- 💬 [Hacer una pregunta](https://github.com/bonifaciochuco/evaluacion02/discussions)
 - 📧 Email: [tu-email@example.com]
 
 ---

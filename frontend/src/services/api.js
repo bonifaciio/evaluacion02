@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api";
+// El backend en docker-compose se expone en el puerto 8081
+const API_URL = "http://localhost:8081/api";
 
 const api = axios.create({
   baseURL: API_URL,
@@ -67,7 +68,7 @@ export const citaService = {
   getByMedico: (idMedico) => api.get(`/citas/medico/${idMedico}`),
   create: (data) => api.post("/citas", data),
   update: (id, data) => api.put(`/citas/${id}`, data),
-  cambiarEstado: (id, estado) =>
+  updateEstado: (id, estado) =>
     api.patch(`/citas/${id}/estado?estado=${estado}`),
   delete: (id) => api.delete(`/citas/${id}`),
 };

@@ -1,5 +1,6 @@
 package com.hospital.controller;
 
+import com.hospital.dto.CitaCreateDTO;
 import com.hospital.dto.CitaDTO;
 import com.hospital.entity.Cita;
 import com.hospital.service.CitaService;
@@ -68,16 +69,18 @@ public class CitaController {
 
     @PostMapping
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_RECEPCIONISTA')")
-    public ResponseEntity<Cita> crear(@RequestBody Cita cita) {
+    public ResponseEntity<CitaDTO> crear(@RequestBody CitaCreateDTO dto) {
+        Cita cita = citaService.crearDesdeDTO(dto);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(citaService.guardar(cita));
+                .body(convertirADTO(cita));
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_RECEPCIONISTA')")
-    public ResponseEntity<Cita> actualizar(@PathVariable Long id, @RequestBody Cita cita) {
+    public ResponseEntity<CitaDTO> actualizar(@PathVariable Long id, @RequestBody CitaCreateDTO dto) {
         try {
-            return ResponseEntity.ok(citaService.actualizar(id, cita));
+            Cita cita = citaService.actualizarDesdeDTO(id, dto);
+            return ResponseEntity.ok(convertirADTO(cita));
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }

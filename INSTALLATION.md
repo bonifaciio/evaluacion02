@@ -29,7 +29,7 @@ git --version
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/rafaelchuco/evaluacion02.git
+git clone https://github.com/bonifaciochuco/evaluacion02.git
 
 # Entrar al directorio
 cd evaluacion02

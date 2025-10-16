@@ -156,7 +156,7 @@ El proyecto está completamente funcional y listo para ser compartido en GitHub:
 git init
 git add .
 git commit -m "Sistema de Gestión Hospitalaria v1.0 - Production Ready"
-git remote add origin https://github.com/rafaelchuco/evaluacion02.git
+git remote add origin https://github.com/bonifaciochuco/evaluacion02.git
 git branch -M main
 git push -u origin main
 ```
@@ -280,7 +280,7 @@ Si alguien descarga el proyecto y tiene problemas:
 
 **Estado**: ✅ PRODUCCIÓN  
 **Última verificación**: 9 de Octubre de 2025  
-**Desarrollador**: Rafael Chuco
+**Desarrollador**: bonifacio
 
 ---
 

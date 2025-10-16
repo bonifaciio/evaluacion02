@@ -337,7 +337,7 @@ git log --oneline -- *.md
 Si no encuentras lo que buscas:
 
 1. **Busca en los archivos**: Usa Ctrl+F en tu navegador
-2. **Revisa Issues**: https://github.com/rafaelchuco/evaluacion02/issues
+2. **Revisa Issues**: https://github.com/bonifaciochuco/evaluacion02/issues
 3. **Abre un Issue nuevo**: Describe tu problema
 4. **Contacta al autor**: Ver [README.md](README.md)
 
@@ -345,9 +345,9 @@ Si no encuentras lo que buscas:
 
 ## 📞 Contacto
 
-- 🐙 GitHub: [@rafaelchuco](https://github.com/rafaelchuco)
+- 🐙 GitHub: [@bonifaciochuco](https://github.com/bonifaciochuco)
 - 📧 Email: [Contacto]
-- 🔗 Repositorio: https://github.com/rafaelchuco/evaluacion02
+- 🔗 Repositorio: https://github.com/bonifaciochuco/evaluacion02
 
 ---
 

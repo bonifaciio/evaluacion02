@@ -7,6 +7,8 @@ import com.hospital.entity.Usuario;
 import com.hospital.repository.UsuarioRepository;
 import com.hospital.security.JwtTokenProvider;
 import com.hospital.service.UsuarioService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/auth")
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class AuthController {
+    private static final Logger log = LoggerFactory.getLogger(AuthController.class);
     
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -35,9 +38,13 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         try {
+        final String username = loginRequest.getNombreUsuario() == null
+            ? null
+            : loginRequest.getNombreUsuario().trim();
+
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            loginRequest.getNombreUsuario(),
+                username,
                             loginRequest.getContrasena()
                     )
             );
@@ -45,7 +52,7 @@ public class AuthController {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String jwt = tokenProvider.generateToken(authentication);
             
-            Usuario usuario = usuarioRepository.findByNombreUsuario(loginRequest.getNombreUsuario())
+        Usuario usuario = usuarioRepository.findByNombreUsuario(username)
                     .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
             
             return ResponseEntity.ok(new LoginResponse(
@@ -55,7 +62,8 @@ public class AuthController {
                     usuario.getRol()
             ));
         } catch (Exception e) {
-            return ResponseEntity.badRequest()
+        log.warn("Fallo de login: {}", e.getMessage());
+        return ResponseEntity.status(400)
                     .body(new MessageResponse("Error: Credenciales inválidas"));
         }
     }

@@ -42,10 +42,10 @@ const Citas = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [editingCita, setEditingCita] = useState(null);
   const [formData, setFormData] = useState({
-    fechaCita: "",
-    horaCita: "",
+    fecha: "",
+    hora: "",
     motivo: "",
-    estado: "PROGRAMADA",
+    estado: "programada",
     idPaciente: "",
     idMedico: "",
   });
@@ -78,20 +78,20 @@ const Citas = () => {
     if (cita) {
       setEditingCita(cita);
       setFormData({
-        fechaCita: cita.fechaCita,
-        horaCita: cita.horaCita,
-        motivo: cita.motivo,
-        estado: cita.estado,
-        idPaciente: cita.paciente?.idPaciente || "",
-        idMedico: cita.medico?.idMedico || "",
+        fecha: cita.fecha || "",
+        hora: cita.hora || "",
+        motivo: cita.motivo || "",
+        estado: cita.estado || "programada",
+        idPaciente: cita.idPaciente || "",
+        idMedico: cita.idMedico || "",
       });
     } else {
       setEditingCita(null);
       setFormData({
-        fechaCita: new Date().toISOString().split("T")[0],
-        horaCita: "09:00",
+        fecha: new Date().toISOString().split("T")[0],
+        hora: "09:00",
         motivo: "",
-        estado: "PROGRAMADA",
+        estado: "programada",
         idPaciente: "",
         idMedico: "",
       });
@@ -114,9 +114,12 @@ const Citas = () => {
   const handleSubmit = async () => {
     try {
       const citaData = {
-        ...formData,
-        paciente: { idPaciente: formData.idPaciente },
-        medico: { idMedico: formData.idMedico },
+        idPaciente: parseInt(formData.idPaciente),
+        idMedico: parseInt(formData.idMedico),
+        fecha: formData.fecha,
+        hora: formData.hora,
+        motivo: formData.motivo,
+        estado: formData.estado,
       };
 
       if (editingCita) {
@@ -156,14 +159,14 @@ const Citas = () => {
   };
 
   const getEstadoColor = (estado) => {
-    switch (estado) {
-      case "PROGRAMADA":
+    switch (estado?.toLowerCase()) {
+      case "programada":
         return "info";
-      case "CONFIRMADA":
+      case "confirmada":
         return "success";
-      case "ATENDIDA":
+      case "atendida":
         return "default";
-      case "CANCELADA":
+      case "cancelada":
         return "error";
       default:
         return "default";
@@ -230,10 +233,10 @@ const Citas = () => {
               {citas.map((cita) => (
                 <TableRow key={cita.idCita}>
                   <TableCell>{cita.idCita}</TableCell>
-                  <TableCell>{cita.fechaCita}</TableCell>
-                  <TableCell>{cita.horaCita}</TableCell>
-                  <TableCell>{getPacienteNombre(cita.paciente)}</TableCell>
-                  <TableCell>{getMedicoNombre(cita.medico)}</TableCell>
+                  <TableCell>{cita.fecha}</TableCell>
+                  <TableCell>{cita.hora}</TableCell>
+                  <TableCell>{cita.nombrePaciente}</TableCell>
+                  <TableCell>{cita.nombreMedico}</TableCell>
                   <TableCell>{cita.motivo}</TableCell>
                   <TableCell>
                     <Chip
@@ -250,22 +253,22 @@ const Citas = () => {
                     >
                       <EditIcon />
                     </IconButton>
-                    {cita.estado === "PROGRAMADA" && (
+                    {cita.estado === "programada" && (
                       <IconButton
                         size="small"
                         onClick={() =>
-                          handleChangeEstado(cita.idCita, "CONFIRMADA")
+                          handleChangeEstado(cita.idCita, "confirmada")
                         }
                         color="success"
                       >
                         <CheckIcon />
                       </IconButton>
                     )}
-                    {cita.estado !== "CANCELADA" && (
+                    {cita.estado !== "cancelada" && (
                       <IconButton
                         size="small"
                         onClick={() =>
-                          handleChangeEstado(cita.idCita, "CANCELADA")
+                          handleChangeEstado(cita.idCita, "cancelada")
                         }
                         color="error"
                       >
@@ -297,20 +300,20 @@ const Citas = () => {
         <DialogContent>
           <Box sx={{ pt: 2, display: "flex", flexDirection: "column", gap: 2 }}>
             <TextField
-              name="fechaCita"
+              name="fecha"
               label="Fecha"
               type="date"
-              value={formData.fechaCita}
+              value={formData.fecha}
               onChange={handleChange}
               fullWidth
               InputLabelProps={{ shrink: true }}
               required
             />
             <TextField
-              name="horaCita"
+              name="hora"
               label="Hora"
               type="time"
-              value={formData.horaCita}
+              value={formData.hora}
               onChange={handleChange}
               fullWidth
               InputLabelProps={{ shrink: true }}
@@ -364,10 +367,10 @@ const Citas = () => {
                 onChange={handleChange}
                 label="Estado"
               >
-                <MenuItem value="PROGRAMADA">Programada</MenuItem>
-                <MenuItem value="CONFIRMADA">Confirmada</MenuItem>
-                <MenuItem value="ATENDIDA">Atendida</MenuItem>
-                <MenuItem value="CANCELADA">Cancelada</MenuItem>
+                <MenuItem value="programada">Programada</MenuItem>
+                <MenuItem value="confirmada">Confirmada</MenuItem>
+                <MenuItem value="atendida">Atendida</MenuItem>
+                <MenuItem value="cancelada">Cancelada</MenuItem>
               </Select>
             </FormControl>
           </Box>

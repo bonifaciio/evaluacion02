@@ -40,7 +40,10 @@ export const AuthProvider = ({ children }) => {
   };
 
   const hasRole = (role) => {
-    return user?.rol?.toUpperCase() === role.toUpperCase();
+    if (!user?.rol) return false;
+    // Normalizar ambos roles eliminando el prefijo ROLE_ si existe
+    const normalizeRole = (r) => r.toUpperCase().replace(/^ROLE_/, '');
+    return normalizeRole(user.rol) === normalizeRole(role);
   };
 
   const hasAnyRole = (roles) => {

@@ -76,7 +76,7 @@ git commit -m "🏥 Sistema de Gestión Hospitalaria v1.0
 ───────────────────────────────────────────────────────────
 
 # Conectar con GitHub (reemplaza TU_USUARIO)
-git remote add origin https://github.com/rafaelchuco/evaluacion02.git
+git remote add origin https://github.com/bonifaciochuco/evaluacion02.git
 
 # Renombrar rama a main
 git branch -M main
@@ -153,7 +153,7 @@ Agregar capturas de pantalla:
 INSTRUCCIONES PARA COMPARTIR:
 
 1. Envía el link del repositorio:
-   https://github.com/rafaelchuco/evaluacion02
+   https://github.com/bonifaciochuco/evaluacion02
 
 2. Diles que lean:
    📖 COMO_COMPARTIR.md (archivo clave)
@@ -165,7 +165,7 @@ INSTRUCCIONES PARA COMPARTIR:
    
 4. Pasos que deben seguir:
    
-   git clone https://github.com/rafaelchuco/evaluacion02.git
+   git clone https://github.com/bonifaciochuco/evaluacion02.git
    cd evaluacion02
    ./docker-start.sh
    
@@ -260,8 +260,8 @@ Antes de compartir, verifica:
   DATOS DEL PROYECTO
 ───────────────────────────────────────────────────────────
 
-👤 Autor: Rafael Chuco
-🐙 GitHub: @rafaelchuco
+👤 Autor: bonifacio
+🐙 GitHub: @bonifaciochuco
 📦 Repositorio: evaluacion02
 🏷️ Versión: 1.0
 📅 Fecha: Octubre 2025
