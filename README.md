@@ -355,7 +355,7 @@ Este proyecto es de código abierto y está disponible bajo la Licencia MIT.
 
 ## ✨ Autor
 
-Sistema desarrollado como proyecto de evaluación.
+Rafael Chuco
 
 ---
 
